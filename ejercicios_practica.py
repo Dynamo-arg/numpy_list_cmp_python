@@ -3,7 +3,7 @@
 Numpy [Python]
 Ejercicios de práctica
 ---------------------------
-Autor: Inove Coding School
+Autor: Sebastian Volpe
 Version: 1.2
 
 Descripcion:
@@ -17,6 +17,7 @@ __version__ = "1.2"
 
 import numpy as np
 import math
+import random
 
 
 def ej1():
@@ -25,8 +26,9 @@ def ej1():
     # Realizar una funcion lambda que eleve al cuadrado
     # el número pasado como parámetro
 
-    # potencia_2 = lambda x:......
-    # pot_3 = potencia_2(3)
+    potencia_2 = lambda x: x ** 2
+    pot_3 = potencia_2(5)
+    print(pot_3)
 
     # 2)
     # Utilice la función map para mapear una lambda expression
@@ -42,7 +44,8 @@ def ej1():
     # Lista de numeros
     numeros = [1, -5, 4, 3]
 
-    # numeros_potencia = list(map....)
+    numeros_potencia = list(map(lambda x: x ** 2, numeros))
+    print(numeros_potencia)
 
 
 def ej2():
@@ -55,7 +58,6 @@ def ej2():
 
     # 2)
     # Lista de string
-    palabras = ['Inove', 'casa', 'programacion']
 
     # Utilice la función map para mapear una lambda expression
     # que retorne el tamaño (len) de cada texto em cata iteración
@@ -67,7 +69,9 @@ def ej2():
     # NOTA: No debe usar "len_string" dentro del map, debe colocar
     # directamente la lambda.
 
-    # palabras_len = list(map....)
+    palabras = ['Inove', 'casa', 'programacion']    
+    palabras_len = list(map(lambda x: len(x), palabras))
+    print(palabras_len)
 
 
 def ej3():
@@ -77,7 +81,8 @@ def ej3():
     # esta lista generada deberá tener un tamaño de 11
     # números, conteniendo del 0 al 10 inclusive
 
-    # lista_0_10 = [......]
+    lista_0_10 = [x for x in range(0,11)]
+    print(lista_0_10)
 
     # 2)
     # Generar una lista a partir de comprensión de listas,
@@ -90,7 +95,9 @@ def ej3():
     # del 0 al 10 (como el ejer anterior) pero que cada
     # elemento lo multipliquen x5.
 
-    # tabla_5 = [......]
+    tabla_5 = [x*5 for x in lista_0_10]
+    print(tabla_5)
+
 
     # 3)
     # Generar una lista a partir de comprensión de listas,
@@ -101,9 +108,8 @@ def ej3():
     # o randint para generar números aleatorios.
     # https://docs.python.org/3/library/random.html
 
-    # dias_mes = [.....]
-
-    pass
+    dias_mes = [random.randint(1, 30) for x in range(10)]
+    print(dias_mes)
 
 
 def ej4():
@@ -119,7 +125,8 @@ def ej4():
     # TIP: Recomendamos ver el método "isdigit" de strings
     # para aplicar en este caso.
     list_numeros_str = ['5', '2', '3', '', '7', 'NaN']
-
+    lista_numeros_int = [int(x) if x.isdigit() is True else 0 for x in list_numeros_str]
+    print(lista_numeros_int)
 
     # ¿Ya terminaron el ejercicio? ¿Por qué no prueban
     # hacer negativo alguno de los números de la lista?
@@ -142,7 +149,8 @@ def ej5():
     # De la lista resultante informar cuantas personas/personal
     # comprendido en dicho rango pasó por ese molinete
 
-    # personal_1_10 = [.....]
+    personal_1_10 = [x for x in accesos if x < 10]
+    print("Pasaron", len(personal_1_10), "personas")
 
     # 2)
     # Generar una lista por comprensión de la listas "accesos"
@@ -154,8 +162,8 @@ def ej5():
     # TIP: Utilizar el operador "in" para chequear si un ID de accesos está
     # dentro de "id_validos"
 
-    # personal_valido = [.....]
-    pass
+    personal_valido = [x for x in accesos if x in id_validos]
+    print(personal_valido)
 
 
 def ej6():
@@ -164,17 +172,21 @@ def ej6():
     # el cual este acotado entre 0 y 1000
     # De dicho array calcular las siguientes operaciones:
 
+    vector = np.array([x for x in range(0,1000)])
+
     # 1)
     # Calcular la suma de todos los elementos en el array
     # utilizar el método "sum" de numpy
 
-    # suma = ....
+    suma = np.sum(vector)
+    print('Suma total:', suma)
 
     # 2)
     # Calcular la diferencia de todos los elementos en el array
     # utilizar el método "diff" de numpy
 
-    # diferencia = ....
+    diferencia = np.diff(vector)
+    print(diferencia)
 
     # 3)
     # Utilizar la funcion "where" para reemplazar los números múltiplos
@@ -183,15 +195,15 @@ def ej6():
     # múltiplo de "5"? Ese operador ya lo conoce y lo viene utilizando
     # bastante para saber si un número es múltiplo de "2"
 
-    # nuevo_array = ....
-    pass
+    nuevo_array = np.where((vector % 5) == 0, 0,vector)
+    print(nuevo_array)
 
 
 if __name__ == '__main__':
     print("Bienvenidos a otra clase de Inove con Python")
     ej1()
-    # ej2()
-    # ej3()
-    # ej4()
-    # ej5()
-    # ej6()
+    ej2()
+    ej3()
+    ej4()
+    ej5()
+    ej6()
