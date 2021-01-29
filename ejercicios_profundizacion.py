@@ -11,12 +11,13 @@ Programa creado para que practiquen los conocimietos
 adquiridos durante la semana
 '''
 
-__author__ = "Inove Coding School"
+__author__ = "Sebastian Volpe"
 __email__ = "alumnos@inove.com.ar"
 __version__ = "1.1"
 
 import numpy as np
-
+import random
+import math
 
 def ej1():
     print('Comenzamos a divertirnos!')
@@ -31,6 +32,7 @@ def ej1():
        que estén comprendidos entre 1 y 10 inclusive
        (NOTA: utilizar comprension de listas a pesar de poder hacerlo
         con un método de la librería random)
+
     2) Luego de generar la lista sumar los números y ver si el resultado
        de la suma es menor o igual a 21
        a) Si el número es menor o igual a 21 se imprime en pantalla
@@ -41,6 +43,12 @@ def ej1():
 
     Realizar este proceso iterativo hasta cumplir el objetivo
     '''
+    suma = 100
+    while suma >= 21:
+        lista_random = [random.randint(1, 10) for x in range(3)]
+        suma = np.sum(lista_random)
+    print("Numeros recolectados", lista_random, "suma total", suma)
+ 
 
 
 def ej2():
@@ -61,6 +69,10 @@ def ej2():
                'Alejandro', 'Leonel', 'Antonio', 'Omar', 'Antonia', 'Amalia',
                'Daniela', 'Sofia', 'Celeste', 'Ramon', 'Jorgelina', 'Anabela']
 
+    nombres_filtrados = [x for x in nombres if x[0] in padron] 
+    print(nombres_filtrados)
+
+
     # Se espera obtener:
     # ['Tamara', 'Juan', 'Alberto'......]
 
@@ -80,7 +92,7 @@ def ej3():
     # NO utilizar comprensión de listas, solo utilice la
     # funcion de numpy "np.sin"
 
-    # y_nump =
+    y_nump = np.sin(x)
 
     # Conjunto de valores "X" en una lista
     x = list(np.arange(0, 2*np.pi, 0.1))
@@ -89,7 +101,9 @@ def ej3():
     # "y_list" que tenga todos los valores obtenidos como resultado
     # de someter cada valor de "X" a la función math.sin
 
-    # y_list =
+    y_list = [math.sin(a) for a in x]
+    print(y_list)
+
 
     # Este es un ejemplo práctico de cuando es útil usar numpy,
     # basicamente siempre que deseen utilizar una función matemática
@@ -122,7 +136,11 @@ def ej4():
     # almacenar en la lista la palabra 'NaN', para ello puede hacer uso
     # de condicionales PERO recomendamos leer atentamente el método "get"
     # de diccionarios que tiene un parametro configurable respecto
-    # que sucede sino encuentra la "key" en el diccionario.
+    # que sucede sino encuentra la "key" en el diccionario
+    #nombres_filtrados = [x for x in nombres if x[0] in padron] 
+    lista_compra_productos = [{x:producto.get(x,"NaN")} for x in lista_compra_id]
+    print(lista_compra_productos)
+
 
 
 def ej5():
@@ -147,6 +165,27 @@ def ej5():
     dos jugadores y compitan para ver quien sacá la suma de números
     más cercanos a 21 sin pasarse!
     '''
+    print("BLACK JACK !!")
+    cartas = [random.randint(1, 10) for x in range(2)]
+    print("Cartas repartidas:", cartas)
+    while sum(cartas) < 21:
+        nueva_carta = input("Desea pedir nueva carta (S/N)")
+        if nueva_carta == "s":
+            cartas.append(random.randint(1, 10))
+            print("TOTAL CONTEO CARTAS:",sum(cartas))
+        else:
+            print("Juego terminado TOTAL:",sum(cartas))
+            break
+    if sum(cartas) > 22:
+        print("JUEGO TERMINADO PERDIO TOTAL:", sum(cartas))
+    elif sum(cartas) == 21:
+        print("BLACK JACK!!!!!!")
+    else:
+        print("JUEGO TERMINADO puntaje:", sum(cartas))
+
+    
+    
+
 
 
 if __name__ == '__main__':
@@ -155,4 +194,4 @@ if __name__ == '__main__':
     # ej2()
     # ej3()
     # ej4()
-    # ej5()
+    ej5()
